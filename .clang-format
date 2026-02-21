@@ -1,0 +1,9 @@
+---
+  BasedOnStyle: Google
+  ColumnLimit: 88
+  IndentWidth: 2
+  IncludeBlocks: Regroup
+  IndentPPDirectives: AfterHash
+  DerivePointerAlignment: false
+  PointerAlignment: Left
+...

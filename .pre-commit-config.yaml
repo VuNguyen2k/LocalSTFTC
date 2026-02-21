@@ -1,0 +1,41 @@
+exclude: ^(template|extern)
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks.git
+  rev: v4.0.1
+  hooks:
+  - id: check-added-large-files
+    exclude: extern/libs/.+|src/core_audio/16khz/builtin_models/.+|src/core_audio/myvoice_only/builtin_models/.+|src/core_audio/48khz/builtin_models/.+
+  - id: check-merge-conflict
+  - id: check-case-conflict
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+  - id: trailing-whitespace
+  - id: no-commit-to-branch
+    args: ['--branch', 'main']
+#   - id: pretty-format-json
+#   - id: check-json
+#   - id: check-toml
+#   - id: check-xml
+#   - id: check-yaml
+
+- repo: https://github.com/pre-commit/mirrors-clang-format.git
+  rev: v13.0.0
+  hooks:
+    - id: clang-format
+      args: [--style=file, -i]
+      files: '^(src|include|benchmark)/.*\.(cc|cxx|cpp|h|hpp|hxx)$'
+
+- repo: https://github.com/cpplint/cpplint.git
+  rev: 1.5.5
+  hooks:
+    - id: cpplint
+      args: ["--verbose=0", "--linelength=88", "--filter=-build/header_guard,-build/c++11"]
+      files: '^src/.*\.(cc|cxx|cpp|h|hpp|hxx)$'
+
+- repo: https://github.com/pocc/pre-commit-hooks.git
+  rev: v1.3.4
+  hooks:
+  - id: cppcheck
+    args: ["--inline-suppr", "--enable=all", "--language=c++",  "--force", "-iextern"]
+    files: ^src/.*\.(cc|cxx|cpp)$
