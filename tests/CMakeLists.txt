@@ -51,3 +51,8 @@ add_executable(test_ola ${CMAKE_CURRENT_SOURCE_DIR}/main_ola.cpp)
 target_include_directories(test_ola PRIVATE ${INCLUDE_DIR})
 target_link_libraries(test_ola PRIVATE stftc)
 set_target_properties(test_ola PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+
+add_executable(test_rtstft ${CMAKE_CURRENT_SOURCE_DIR}/main_rtstft.cpp)
+target_include_directories(test_rtstft PRIVATE ${INCLUDE_DIR})
+target_link_libraries(test_rtstft PRIVATE stftc)
+set_target_properties(test_rtstft PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})

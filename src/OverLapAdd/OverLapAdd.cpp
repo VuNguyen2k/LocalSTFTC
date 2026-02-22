@@ -1,6 +1,6 @@
 #include "OverLapAdd.h"
 
-OverLapAdd::OverLapAdd(_In_ STFTConfigs configs) : configs_(configs) {
+OverLapAdd::OverLapAdd(_In_ STFTConfigs& configs) : configs_(configs) {
   pbuffer_ =
       BufferInterface::Create(GetConfigs().buffer_type, GetConfigs().buffer_configs);
 

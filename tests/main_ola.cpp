@@ -1,10 +1,10 @@
+#include <iostream>
+
 #include "Common.h"
 #include "FourierInterface.h"
 #include "OverLapAdd.h"
 #include "Utilities.h"
 #include "WindowsInterface.h"
-
-#include <iostream>
 
 void run() {
   struct STFTConfigs configs = {
@@ -18,7 +18,8 @@ void run() {
   };
 
   auto window = WindowsInterface::Create(configs.win_type, configs.win_size);
-  auto win_norm = CalculateNorm(window) / (static_cast<Real>(configs.hop_size) * static_cast<Real>(configs.fft_configs.nfft));
+  auto win_norm = CalculateNorm(window) * static_cast<Real>(configs.fft_configs.nfft) /
+                  static_cast<Real>(configs.hop_size);
 
   auto fft = FourierInterface::Create(configs.fft_type, configs.fft_configs);
 
@@ -54,6 +55,12 @@ void run() {
 
     y.insert(y.end(), voutput.begin(), voutput.end());
   }
+
+  for (auto& i : y) {
+    std::cout << i << " ";
+  }
+  std::cout << std::endl;
+  std::cout << x.size() << " " << y.size() << std::endl;
 }
 
 int main() { run(); }

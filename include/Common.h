@@ -15,6 +15,7 @@ using Real = float;
 enum class FourierType { DUMMY = 0, PFFFT };
 enum class BufferType { SIMPLE = 0 };
 enum class WindowType { HANN = 0, SQRT_HANN };
+enum class STFTType { REALTIME = 0 };
 
 struct FourierConfigs {
   int nfft;
