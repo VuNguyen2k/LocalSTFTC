@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(stftc LANGUAGES CXX C)
+project(stftc_buffer LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 17)
 
 if(APPLE)
@@ -29,16 +29,8 @@ else()
   set(OSX_ADDITIONAL_OPTION "")
 endif()
 
-file(GLOB stftc_SOURCE_FILES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-add_library(stftc STATIC ${stftc_SOURCE_FILES})
+file(GLOB stftc_buffer_SOURCE_FILES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+add_library(stftc_buffer STATIC ${stftc_buffer_SOURCE_FILES})
 
-target_include_directories(stftc PUBLIC ${CMAKE_SOURCE_DIR}/include)
-
-CPMAddPackage(NAME stftc_fourier SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Fourier)
-CPMAddPackage(NAME stftc_windows SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Windows)
-CPMAddPackage(NAME stftc_buffer SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Buffer)
-CPMAddPackage(NAME stftc_ola SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/OverLapAdd)
-
-target_link_libraries(
-  stftc PRIVATE fmt::fmt PFFFT stftc_fourier stftc_windows stftc_buffer stftc_ola
-)
+target_include_directories(stftc_buffer PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(stftc_buffer PUBLIC fmt::fmt)

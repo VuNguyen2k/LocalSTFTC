@@ -15,5 +15,5 @@ void Dummy::FFT(_In_ std::vector<Real>& wave, _Out_ std::vector<Complex>& spectr
 }
 void Dummy::iFFT(_In_ std::vector<Complex>& spectrum, _Out_ std::vector<Real>& wave) {
   ASSERT(CHECK_SPECTRUM_SIZE(GetConfigs(), spectrum.size()));
-  memset(wave.data(), 0, wave.size());
+  memset(wave.data(), 0, wave.size() * sizeof(Real));
 }

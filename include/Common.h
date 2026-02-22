@@ -12,8 +12,28 @@
 using Complex = std::complex<float>;
 using Real = float;
 
+enum class FourierType { DUMMY = 0, PFFFT };
+enum class BufferType { SIMPLE = 0 };
+enum class WindowType { HANN = 0, SQRT_HANN };
+
 struct FourierConfigs {
   int nfft;
+};
+
+struct BufferConfigs {
+  int initial_size;
+};
+
+struct STFTConfigs {
+  struct FourierConfigs fft_configs;
+  struct BufferConfigs buffer_configs;
+
+  int win_size;
+  int hop_size;
+
+  WindowType win_type;
+  BufferType buffer_type;
+  FourierType fft_type;
 };
 
 int GetSpectrumSize(_In_ FourierConfigs& configs);

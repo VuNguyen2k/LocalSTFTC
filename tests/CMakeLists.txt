@@ -39,5 +39,15 @@ set_target_properties(test_pffft PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DI
 
 add_executable(test_fft ${CMAKE_CURRENT_SOURCE_DIR}/main_fft.cpp)
 target_include_directories(test_fft PRIVATE ${INCLUDE_DIR})
-target_link_libraries(test_fft PRIVATE stftc stftc_fourier)
+target_link_libraries(test_fft PRIVATE stftc)
 set_target_properties(test_fft PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+
+add_executable(test_buffer ${CMAKE_CURRENT_SOURCE_DIR}/main_buffer.cpp)
+target_include_directories(test_buffer PRIVATE ${INCLUDE_DIR})
+target_link_libraries(test_buffer PRIVATE stftc)
+set_target_properties(test_buffer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+
+add_executable(test_ola ${CMAKE_CURRENT_SOURCE_DIR}/main_ola.cpp)
+target_include_directories(test_ola PRIVATE ${INCLUDE_DIR})
+target_link_libraries(test_ola PRIVATE stftc)
+set_target_properties(test_ola PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})

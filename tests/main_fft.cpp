@@ -15,7 +15,7 @@ void run() {
   }
   std::cout << std::endl;
 
-  memset(vin.data(), 0, vin.size());
+  memset(vin.data(), 0, vin.size() * sizeof(float));
   pfft->iFFT(vout, vin);
 
   for (auto& i : vin) {

@@ -4,8 +4,6 @@
 
 #include "Common.h"
 
-enum class FourierType { DUMMY = 0, PFFFT };
-
 class FourierInterface {
  public:
   static std::unique_ptr<FourierInterface> Create(_In_ FourierType ftype,
