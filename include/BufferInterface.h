@@ -22,6 +22,8 @@ class BufferInterface {
   virtual void PutRange(_In_ std::vector<Real>& v);
   virtual std::vector<Real> PopRange(_In_ size_t n);
 
+  virtual void ResetInternalState() = 0;
+
   BufferInterface(const BufferInterface&) = delete;
   BufferInterface& operator==(const BufferInterface&) = delete;
 

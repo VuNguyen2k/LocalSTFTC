@@ -11,6 +11,7 @@ class OverLapAdd {
   const STFTConfigs& GetConfigs() { return configs_; }
 
   void Step(_In_ std::vector<Real>& vinput, _Out_ std::vector<Real>& voutput);
+  void ResetInternalState();
 
  private:
   struct STFTConfigs configs_;

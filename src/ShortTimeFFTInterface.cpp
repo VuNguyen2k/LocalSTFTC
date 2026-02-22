@@ -26,3 +26,5 @@ ShortTimeFFTInterface::ShortTimeFFTInterface(_In_ STFTConfigs& configs)
                 static_cast<Real>(configs.hop_size)) {}
 
 ShortTimeFFTInterface::~ShortTimeFFTInterface() {}
+
+void ShortTimeFFTInterface::ResetInternalState() { ola_.ResetInternalState(); }

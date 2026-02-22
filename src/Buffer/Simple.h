@@ -14,6 +14,8 @@ class SimpleBuffer : public BufferInterface {
   Real Pop() override;
   size_t Size() override;
 
+  void ResetInternalState() override;
+
  private:
   std::vector<Real> queue_;
 };

@@ -22,3 +22,5 @@ Real& SimpleBuffer::Get(_In_ size_t idx) {
 }
 
 size_t SimpleBuffer::Size() { return queue_.size(); }
+
+void SimpleBuffer::ResetInternalState() { queue_.clear(); }

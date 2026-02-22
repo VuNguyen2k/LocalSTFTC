@@ -35,6 +35,7 @@ void run() {
 
     y.insert(y.end(), voutput.begin(), voutput.end());
   }
+  pstft->ResetInternalState();
 
   for (auto& i : y) {
     std::cout << i << " ";

@@ -21,6 +21,8 @@ class ShortTimeFFTInterface {
   virtual void iSTFT(_In_ std::vector<std::vector<Complex>>& spectrum,
                      _Out_ std::vector<Real>& wave) = 0;
 
+  virtual void ResetInternalState();
+
  protected:
   struct STFTConfigs configs_;
   const std::vector<Real> window_;

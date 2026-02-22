@@ -28,3 +28,5 @@ void OverLapAdd::Step(_In_ std::vector<Real>& vinput,
     x += vinput[i];
   }
 }
+
+void OverLapAdd::ResetInternalState() { pbuffer_->ResetInternalState(); }
