@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 project(stftc_tests LANGUAGES CXX C)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 if(APPLE)
   enable_language(OBJCXX OBJC)
