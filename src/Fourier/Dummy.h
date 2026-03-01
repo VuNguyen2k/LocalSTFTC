@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "Common.h"
 #include "FourierInterface.h"
