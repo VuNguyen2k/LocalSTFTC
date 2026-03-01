@@ -1,5 +1,8 @@
 #include "Dummy.h"
 
+#include <memory>
+#include <cstring>
+
 #include "Common.h"
 
 Dummy::Dummy(_In_ FourierConfigs& configs) : FourierInterface(configs) {};

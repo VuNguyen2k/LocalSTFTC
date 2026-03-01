@@ -1,5 +1,7 @@
 #include "PFFFT.h"
 
+#include <memory>
+
 #include "Common.h"
 
 PFFFT::PFFFT(_In_ FourierConfigs& configs)

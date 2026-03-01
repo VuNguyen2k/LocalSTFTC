@@ -1,6 +1,7 @@
 #include "FourierInterface.h"
 
 #include <fmt/core.h>
+#include <memory>
 
 #include "Dummy.h"
 #include "PFFFT.h"

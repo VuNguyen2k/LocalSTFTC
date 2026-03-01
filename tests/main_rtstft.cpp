@@ -5,12 +5,12 @@
 
 void run() {
   struct STFTConfigs configs = {
-      .fft_configs.nfft = 512,
-      .buffer_configs.initial_size = 512,
+      .fft_configs = {.nfft = 512},
+      .buffer_configs = {.initial_size = 512},
       .win_size = 512,
       .hop_size = 128,
-      .buffer_type = BufferType::SIMPLE,
       .win_type = WindowType::HANN,
+      .buffer_type = BufferType::SIMPLE,
       .fft_type = FourierType::PFFFT,
   };
 

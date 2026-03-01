@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "FourierInterface.h"
 #include "utils.h"
 
