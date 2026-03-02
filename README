@@ -1,0 +1,82 @@
+# C++ implementation STFT
+
+## Prerequisites
+- `cmake` >= 3.20 (recommend 4.0.3)
+- `gcc`, `g++` >= 13.0 or any similar C/C++ compilers such as `clang` and `clang++` (v15.0.0)
+- `make` (often shipped via `build-essential` or `Xcode` package)
+- `miniconda` (optional, `python` from the system could be used)
+
+## Build steps
+#### 1. Setup python env (only once)
+Assume `python` is already been installed, run
+
+```zsh
+pip install pybind11=2.10.0
+```
+
+#### 2. Run cmake
+After the env is set up, run
+
+```zsh
+mkdir build
+cd build
+```
+
+Then run
+
+```zsh
+cmake ..
+```
+
+Commands can be changed to adapt to a specific architecture. for example
+
+```zsh
+cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_OSX_ARCHITECTURES=arm64 -DCPM_SOURCE_CACHE=../.cache ..
+```
+
+More options can be found on cmake website.
+
+#### 3. Run build (OSX and Linux only)
+From current `build` directory, run
+
+```zsh
+make
+```
+
+After the build completed, the directory's content is expcected to be similar to the following
+
+```zsh
+(stftc) tomtom@TomMacOS build % ll
+total 5144
+drwxr-xr-x  15 tomtom  staff     480 Mar  1 20:47 .
+drwxr-xr-x  17 tomtom  staff     544 Mar  2 13:02 ..
+-rw-r--r--   1 tomtom  staff   34060 Mar  1 20:47 CMakeCache.txt
+drwxr-xr-x  16 tomtom  staff     512 Mar  1 20:47 CMakeFiles
+drwxr-xr-x  11 tomtom  staff     352 Mar  1 20:47 CPM_modules
+-rw-r--r--   1 tomtom  staff   21705 Mar  1 20:47 Makefile
+-rw-r--r--   1 tomtom  staff   12772 Mar  1 20:47 PYFINFER.cmake
+drwxr-xr-x  17 tomtom  staff     544 Mar  1 20:47 _deps
+-rw-r--r--   1 tomtom  staff    2895 Mar  1 20:47 cmake_install.cmake
+-rw-r--r--   1 tomtom  staff      71 Mar  1 20:47 cpm-package-lock.cmake
+-rwxr-xr-x   1 tomtom  staff  495448 Mar  1 20:47 test_buffer
+-rwxr-xr-x   1 tomtom  staff  563000 Mar  1 20:47 test_fft
+-rwxr-xr-x   1 tomtom  staff  617688 Mar  1 20:47 test_ola
+-rwxr-xr-x   1 tomtom  staff  199368 Mar  1 20:47 test_pffft
+-rwxr-xr-x   1 tomtom  staff  663992 Mar  1 20:47 test_rtstft
+```
+
+#### 4. Run tests (optional)
+The stft tests is divided into several functional subtests include
+
+1. `test_pffft` which tests the pffft functionality
+2. `test_fft` which tests the fft functionality
+3. `test_buffer` which tests the overlap add's buffer
+4. `test_ola` which tests the overlap add functionality
+5. `test_rtstft` which tests full flow realtime stft
+
+Each can be used directly by running the binary. For example, `test_fft` illustrates the raw spectral value (1st line) and its inverted waveform (2nd line) given the inputs signal is an fixed 0.5 magnitude waveform of 512. The conparison can be retrieved by using the `tests/test_forward_fft.py` (compared to numpy.fft outputs).
+```zsh
+(stftc) tomtom@TomMacOS build % ./test_fft
+(256,0) (0,0) (0,-0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,-0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,-0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,-0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) 
+256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256
+```
