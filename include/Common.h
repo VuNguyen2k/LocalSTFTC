@@ -1,5 +1,7 @@
 #pragma once
 
+#include <fmt/core.h>
+
 #include <cassert>
 #include <complex>
 #include <exception>
@@ -46,7 +48,14 @@ int GetMinimumWaveSize(_In_ FourierConfigs& configs);
 #define CHECK_MINIMUM_WAVE_SIZE(configs, wave_size) \
   (wave_size >= GetMinimumWaveSize(configs))
 
-#define ASSERT(exp) assert(exp)
+#ifdef DEBUG
+#  define ASSERT(exp) assert(exp)
+#else
+#  define ASSERT(exp)           \
+    if (exp)                    \
+      throw std::runtime_error( \
+          fmt::format("[{}:{}] {}", __FILE__, __LINE__, "Assert failed"));
+#endif  // DEBUG
 
 void Complex2InterleavedRealVector(_In_ std::vector<Complex>& vinput,
                                    _Out_ std::vector<Real>& voutput);

@@ -1,7 +1,7 @@
 #include "Dummy.h"
 
-#include <memory>
 #include <cstring>
+#include <memory>
 
 #include "Common.h"
 
